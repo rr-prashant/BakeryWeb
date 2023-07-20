@@ -1,0 +1,87 @@
+{% extends 'mainLayout.html' %}
+{% load static %}
+{% block title %} Sweet Wave Bakery | Cake Details {% endblock %}
+{% block extra-css %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">{% endblock %}
+{% block content %}
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:900px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img src="{% static 'img/logo.png' %}" style="width:50%" alt="Avatar">
+          <div class="w3-display-bottom w3-container w3-text-black">
+            <h2>{{ user.username }}</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p>Customer</p>
+
+          <hr>
+
+         
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16" style="margin-top: 30px;"><i class="fa fa-info fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Customer Information</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Customer Name: {{ user.first_name }} {{ user.last_name }}</b></h5>
+          
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Customer Email: {{ user.email }}</b></h5>
+        </div>
+
+        <div class="w3-container">
+            {% if phn %}
+            <h5 class="w3-opacity" style="margin-bottom: 34px;"><b>Customer Phone Number: {{ phn }}</b></h5>
+                
+            {% else %}
+                <form method="POST" style="margin-top: 20px;">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-outline mb-4">
+                            <input type="text" id="phone" name="phone" class="form-control form-control-lg" placeholder="Phone Number"/>
+                        </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-outline mb-4">
+                                <button class="btn btn-dark btn-lg btn-block" type="submit">Add</button>
+                            </div>
+                        </div>
+                    </div>
+    
+                </form>
+            {% endif %}
+        </div>
+        
+      </div>
+
+      
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+
+
+{% endblock %}
